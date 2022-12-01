@@ -26,11 +26,9 @@ export const Register = ({ setCurrentUser, setIsLogged }) => {
   const navigate = useNavigate();
 
   function handlePasswordRegistration(e) {
-    let passwordInputValue =
-      /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(
-        e.target.value
-      );
-    // setPasswordValid(passwordInputValue);
+    let passwordInputValue = /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(
+      e.target.value
+    );
     if (!passwordInputValue) {
       setPasswordError(
         "Minimum eight characters, at least one letter and one number:"
