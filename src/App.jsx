@@ -106,7 +106,8 @@ function App() {
           </Route>
           <Route path="welcome" element={<WelcomePage />} />
           <Route path="/*" element={<NotFound />} />
-          <Route path="register" element={<Register />} />
+          <Route path="register" element={<Register  setIsLogged={setIsLogged}
+                setCurrentUser={setCurrentUser}/>} />
           <Route
             path="login"
             element={

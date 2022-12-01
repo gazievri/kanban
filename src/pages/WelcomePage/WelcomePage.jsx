@@ -16,7 +16,7 @@ export const WelcomePage = () => {
             <div className="welcome__buttons">
 
                 <NavLink to='/register'>
-                    <Button label={'Register'} isLarge disabled={true}/>
+                    <Button label={'Register'} isLarge />
                 </NavLink>
                 <NavLink to='/login'>
                     <Button label={'Login'} isLarge />

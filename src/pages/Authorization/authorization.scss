@@ -25,7 +25,6 @@
 }
 
 .authorization__buttons {
-    padding-top: 40px;
     width: 30vw;
     margin: 0 auto;
     display: flex;
@@ -63,8 +62,8 @@
     padding-top: 10px;
     text-align: right;
     color: #9d3939;
-    margin-bottom: 15px;
-    height: 15px;
+    margin-bottom: 10px;
+    height: 40px;
     @include heading-s
 }
 

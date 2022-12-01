@@ -92,6 +92,14 @@ class MainBoardApi {
       headers: this._headers,
     }).then(this._checkResponse);
   }
+
+  createUser(user) {
+    return fetch(`${this._baseUrl}/users`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify(user),
+    }).then(this._checkResponse);
+  }
 }
 export const mainApi = new MainBoardApi({
   baseUrl: API_URL,
