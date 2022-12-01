@@ -1,29 +1,55 @@
 import "../authorization.scss";
-
+import { useState, useEffect } from "react";
 import { ThemeSwitcher } from "../../../components/ThemeSwitcher";
 import Button from "../../../components/Button";
 import { NavLink } from "react-router-dom";
 import React from "react";
-export const Register = () => {
+import { mainApi } from "../../../utils/api/mainApi";
+import { useNavigate } from "react-router-dom";
+
+export const Register = ({ setCurrentUser, setIsLogged }) => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
   const [nameError, setNameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [emailValid, setEmailValid] = useState(false);
   const [nameValid, setNameValid] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [emailValid, setEmailValid] = useState(false);
+
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [passwordValid, setPasswordValid] = useState(false);
 
+  const [passwordRepeatError, setPasswordRepeatError] = useState("");
+  const [passwordRepeatValid, setPasswordRepeatValid] = useState(false);
+
+  const navigate = useNavigate();
+
   function handlePasswordRegistration(e) {
-    if (e.target.value.length < 8) {
-      setPasswordError("8 characters minimum");
-    } else if (e.target.value.length >= 8) {
+    let passwordInputValue =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
+        e.target.value
+      );
+    // setPasswordValid(passwordInputValue);
+    if (!passwordInputValue) {
+      setPasswordError(
+        "A password must contains at least eight characters, including at least one number and includes both lower and uppercase letters"
+      );
+    } else {
       setPasswordValid(true);
       setPasswordError("");
     }
 
     setPassword(e.target.value);
+  }
+
+  function handleCheckPasswordEqual(e) {
+    let passwordRepeatValue = e.target.value;
+    if (password === passwordRepeatValue) {
+      console.log("test");
+      setPasswordRepeatValid(true);
+      setPasswordRepeatError("");
+    } else setPasswordRepeatError("Entered passwords do not match");
   }
 
   function handleEmailRegistration(e) {
@@ -48,8 +74,20 @@ export const Register = () => {
     setName(e.target.value);
   }
 
+  useEffect(() => {}, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const user = {
+      name: name,
+      password: password,
+      email: email,
+    };
+    mainApi.createUser(user).then((res) => {
+      setIsLogged(true);
+      setCurrentUser(res);
+      navigate("/");
+    });
   };
 
   return (
@@ -111,15 +149,32 @@ export const Register = () => {
           />
         </div>
         <span className="authorization__input-error">{passwordError}</span>
-        {/* <div className="authorization__input-area">
-                <p className='authorization__subtext'>Password (yes, again)</p>
-                <input className="authorization__input" />
-            </div>
-            <span className="authorization__input-error">{passwordError}</span> */}
+        <div className="authorization__input-area">
+          <p className="authorization__subtext">Password Repeat</p>
+          <input
+            className="authorization__input"
+            name="password-repeat"
+            type="password"
+            onChange={handleCheckPasswordEqual}
+          />
+        </div>
+        <span className="authorization__input-error">
+          {passwordRepeatError}
+        </span>
       </form>
 
       <div className="authorization__buttons">
-        <Button label={"Register"} isLarge />
+        <Button
+          label={"Register"}
+          isLarge
+          fn={handleSubmit}
+          disabled={
+            nameValid === false ||
+            emailValid === false ||
+            passwordValid === false ||
+            passwordRepeatValid === false
+          }
+        />
         <NavLink to="/login">
           <Button label={"Have accout? Go login"} isLarge />
         </NavLink>
