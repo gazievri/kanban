@@ -17,7 +17,7 @@ pet-project to the portfolio and develop hard-skills.
 
 ```
 npm install
-npm run dev
+npm start
 ```
 
 ## Team
