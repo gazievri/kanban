@@ -1,0 +1,85 @@
+@import "../../../styles/@variables";
+@import "../../../styles/@mixins";
+
+.boardsList {
+  display: flex;
+  flex-direction: column;
+  padding-right: 24px;
+  padding-left: 34px;
+  overflow-x: hidden;
+  max-height: 50vh;
+}
+
+.boardsList__links {
+  display: flex;
+  flex-direction: column;
+}
+
+.boardsList__count {
+  @include heading-s;
+  color: var(--typography2);
+  margin-bottom: 19px;
+}
+
+.boardsList__link {
+  @include heading-m;
+  align-items: center;
+  text-decoration: none;
+  color: $medium-grey;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.boardsList__link-icon {
+  background-image: url(../../../images/desk.svg);
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.link-box {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.link-box-wrapper_status_active {
+  position: relative;
+}
+
+.link-box-wrapper_status_active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: -40px;
+  background-color: $main-purple;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  width: 280px;
+}
+
+.link-box-wrapper_status_active .boardsList__link {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.link-box-wrapper_status_active .boardsList__link-icon {
+  position: relative;
+  z-index: 2;
+  background-image: url(../../../images/desk-white.svg);
+}
+
+
+@media screen and (max-width: 536px) {
+  .link-box-wrapper_status_active::before {
+    left: -34px;
+    width: 268px;
+  }
+}

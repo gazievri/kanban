@@ -1,0 +1,99 @@
+@import "../../styles/@variables";
+@import "../../styles/@mixins";
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown__select {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.dropdown__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 500;
+  // color: $medium-grey;
+  color: var(--typography);
+}
+
+.dropdown__fake-select {
+  position: relative;
+  width: 100%;
+
+  &__picker {
+    position: relative;
+    display: block;
+    padding: 8px 50px 8px 16px;
+    margin-bottom: 8px;
+    border: 1px solid $main-purple;
+    border-radius: 4px;
+    word-wrap: break-word;
+    color: var(--typography);
+    cursor: pointer;
+    font-weight: 500;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 23px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      background: url('../../images/path.svg') no-repeat center;
+      width: 20px;
+      height: 20px;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
+
+  &__options {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  &__option {
+    //display: block;
+    width: 100%;
+    padding: 5px 16px;
+    background: var(--option);
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 23px;
+    color: $medium-grey;
+    cursor: pointer;
+    transition: all .2s ease-in;
+
+    &:first-child {
+      border-radius: 8px 8px 0 0;
+      box-shadow: 0 10px 20px 0 #364E7E40;
+    }
+
+    &:last-child {
+      border-radius: 0 0 8px 8px;
+    }
+
+    display: none;
+    transition: 0.2s;
+
+    &.open {
+      display: block;
+    }
+  }
+
+  &__option:hover {
+    color: $main-purple;
+  }
+}

@@ -1,0 +1,15 @@
+.task-form__subtask-frame {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.task-form__subtask {
+    margin: 0;
+    width: 90%;
+}
+
+.task-form__subtasks-wrapper {
+    max-height: 30vh;
+    overflow: auto;
+}

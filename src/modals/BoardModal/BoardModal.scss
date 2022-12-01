@@ -1,0 +1,98 @@
+@import "../../styles/@mixins.scss";
+@import "../../styles/@variables.scss";
+
+
+.modal-board {
+
+  button {
+    cursor: pointer;
+  }
+
+  &__title {
+    margin-bottom: 24px;
+  }
+
+  &__input-title {
+    margin-bottom: 8px;
+    @include paragraph-s;
+    color: #828FA3;
+  }
+
+  &__board-name {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  &__create-column {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  &__column-name {
+    display: flex;
+    align-items: center;
+  
+    flex-direction: column;
+    row-gap: 12px;
+    label {
+      margin-right: 16px;
+    }
+  }
+}
+
+.button {
+
+  @include paragraph-bold;
+
+  &.secondary {
+    margin-bottom: 12px;
+  }
+}
+
+.new-board__btn {
+  border: none;
+}
+
+.new-board {
+
+  display: flex;
+  align-items: center;
+  padding-left: 34px;
+
+  &__btn {
+    height: 48px;
+    color: $main-purple;
+    cursor: pointer;
+    @include heading-m-bold;
+    background: none;
+  }
+ 
+  &__icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 16px;
+    background-image: url(../../images/desk-prpl.svg);
+  }
+}
+
+.modal-board__column {
+  display: flex;
+  align-items: center;
+  width: 97%;
+  justify-content: space-between;
+}
+
+.modal-board__column-field-delete {
+  background-image: url(../../images/crossSign.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.modal-board__column-name {
+  max-height: 30vh;
+  overflow: auto;
+  align-items: flex-start;
+}

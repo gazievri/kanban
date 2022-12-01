@@ -1,0 +1,33 @@
+@import "../../styles/@mixins.scss";
+@import "../../styles/@variables";
+
+.task {
+  max-width: 280px;
+  min-height: 88px;
+  padding: 23px 16px;
+  background-color: var(--frame);
+  cursor: grab;
+  border-radius: 8px;
+  box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin-right: 8px;
+
+  &__title {
+    margin-bottom: 8px;
+    @include heading-m;
+    font-weight: 700;
+    color: var(--typography);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__subscribe {
+    font-weight: 700;
+    @include heading-s;
+    color: #828fa3;
+  }
+}
+
+.task__status_dragged {
+  transform: rotate(5deg);
+}

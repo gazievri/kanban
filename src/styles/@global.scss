@@ -1,0 +1,42 @@
+@import "@mixins";
+@import "@variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  color: var(--typography);
+}
+
+.hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+:root {
+  --bg1: #20212C;
+  --bg2: #2B2C37;
+  --typography: #FFF;
+  --typography2: #FFF;
+  --line: #E4EBFA;
+  --frame: rgba(130, 143, 163, 0.25);
+  --option: #20212C;
+  --last-column-light: linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%);
+  --last-column-dark: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
+}
+
+::-webkit-scrollbar-thumb { 
+	border-radius: 10px; 
+	background-color: $medium-grey; 
+} 
+::-webkit-scrollbar { 
+  height: 9px;
+  width: 5px;
+}

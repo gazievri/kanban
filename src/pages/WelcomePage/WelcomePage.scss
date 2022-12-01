@@ -1,0 +1,40 @@
+@import "../../styles/@variables";
+@import "../../styles/@mixins";
+
+.welcome {
+    background: var(--bg1);
+    align-items: center;
+    height: 100vh;
+}
+
+.welcome__about {
+    padding-top: 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.welcome__text {
+    padding-top: 40px;
+    max-width: 40vw;
+    text-align: center;
+    font-size: 26px;
+    margin: 0 auto;
+}
+
+.welcome__hedhog {
+    height: 20vh;
+}
+
+.welcome__title {
+    padding-top: 40px;
+    font-size: 60px;
+}
+
+.welcome__buttons {
+    padding-top: 40px;
+    width: 30vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}

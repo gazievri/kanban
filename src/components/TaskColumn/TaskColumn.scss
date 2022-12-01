@@ -1,0 +1,48 @@
+@import "../../styles/@variables";
+@import "../../styles/@mixins";
+
+.column {
+    min-width: 280px;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    overflow-y: scroll;
+    max-height: 75vh;
+}
+
+.column__header {
+    display: flex;
+    column-gap: 12px;
+    align-items: center;
+}
+
+.column__header-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+.column__header-circle:hover {
+    cursor: pointer;
+}
+
+.column__header-title {
+    color: $medium-grey;
+    @include heading-s;
+    letter-spacing: 2.4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 220px;
+}
+
+.column__header-title:hover {
+    cursor: pointer;
+}
+
+.column__tasks-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    min-height: 70vh;
+}

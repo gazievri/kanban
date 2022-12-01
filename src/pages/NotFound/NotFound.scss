@@ -1,0 +1,20 @@
+@import "../../styles/@variables";
+@import "../../styles/@mixins";
+
+.NotFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--bg1);
+    align-items: center;
+    height: 100vh;
+}
+
+.NotFound__text {
+    margin: 0 auto 80px;
+    font-size: 40px;
+}
+
+.NotFound__title {
+    font-size: 100px;
+}
