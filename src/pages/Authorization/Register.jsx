@@ -1,10 +1,10 @@
-import "../authorization.scss";
+import "./authorization.scss";
 import { useState, useEffect } from "react";
-import { ThemeSwitcher } from "../../../components/ThemeSwitcher";
-import Button from "../../../components/Button";
+import { ThemeSwitcher } from "../../components/ThemeSwitcher";
+import Button from "../../components/Button";
 import { NavLink } from "react-router-dom";
 import React from "react";
-import { mainApi } from "../../../utils/api/mainApi";
+import { mainApi } from "../../utils/api/mainApi";
 import { useNavigate } from "react-router-dom";
 
 export const Register = ({ setCurrentUser, setIsLogged }) => {

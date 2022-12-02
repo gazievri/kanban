@@ -1,10 +1,10 @@
-import "../authorization.scss";
-import { ThemeSwitcher } from "../../../components/ThemeSwitcher";
-import Button from "../../../components/Button";
-import { Checkbox } from "../../../components/Checkbox";
+import "./authorization.scss";
+import { ThemeSwitcher } from "../../components/ThemeSwitcher";
+import Button from "../../components/Button";
+import { Checkbox } from "../../components/Checkbox";
 import { NavLink } from "react-router-dom";
 import {useState} from 'react';
-import { mainApi } from "../../../utils/api/mainApi";
+import { mainApi } from "../../utils/api/mainApi";
 import { useNavigate} from "react-router-dom";
 
 export const Login = ({setIsLogged, setCurrentUser}) => {
