@@ -8,13 +8,20 @@ import { mainApi } from "../../../utils/api/mainApi";
 import { useNavigate} from "react-router-dom";
 
 export const Login = ({setIsLogged, setCurrentUser}) => {
-  const [email, setEmail] = useState("email 1");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [errorLogin, setErrorLogin] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false)
+
   const navigate = useNavigate()
   function handlePasswordLogin(e) {
+    if(password.length > 8) {
+      setPasswordValid(true)
+    } else {
+      setPasswordValid(false)
+    }
     setPassword(e.target.value);
   }
 
@@ -103,7 +110,7 @@ export const Login = ({setIsLogged, setCurrentUser}) => {
       </form>
 
       <div className="authorization__buttons">
-        <Button label={"Login"} isLarge fn={handleSubmit} />
+        <Button label={"Login"} isLarge fn={handleSubmit}  disabled={ emailValid === false || passwordValid === false  } />
         <NavLink to="/register">
           <Button label={"Dont have accout?  Go to register"} isLarge />
         </NavLink>
