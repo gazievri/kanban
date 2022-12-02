@@ -74,10 +74,20 @@
 
 .header__avatar {
   margin-left: 14px;
-  width: 50px;
-  height: 50px;
   border-radius: 50%;
-  border: 1px solid var(--line);
+  background-color: var(--btn-bg);
+  border: 3px 	  solid #635fc7;
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+}
+
+.header__avatar-img {
+  // display: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+ 
 }
 
 .header__avatar:hover {

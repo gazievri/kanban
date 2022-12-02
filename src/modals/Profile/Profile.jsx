@@ -15,12 +15,14 @@ export const Profile = ({setIsLogged}) => {
     const [nameValid, setNameValid] = useState();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('')
+    const [avatar, setAvatar] = useState('')
     const currentUser = useContext(CurrentUserContext);
 
     const dispatch = useDispatch();
     useEffect(() => {
         setName(currentUser.name);
         setEmail(currentUser.email)
+        setAvatar(currentUser.avatar)
       }, [currentUser]);
 
     const TEMP_DATA_FOR_POPUP = [
@@ -75,7 +77,14 @@ export const Profile = ({setIsLogged}) => {
                 </div>
 
             </div>
-            <form className="profile__form" >
+            <form className="profile__form">
+                <img className='profile__avatar' src={currentUser.avatar} />
+                <div className='profile__input-area'>
+                <p className='profile__subtext'>Avatar (url)</p>
+                <input className="profile__input" id="avatar" name="avatar" type="url" required autoComplete="off" disabled={isDisabled}  
+                    // onChange={handleNameChange}
+                    />
+                </div>
                 <div className="profile__input-area">
                     <p className='profile__subtext'>Name</p>
                     <input className="profile__input" id="name" name="name" type="text" required autoComplete="off" disabled={isDisabled} value={name || ''} 
@@ -84,7 +93,7 @@ export const Profile = ({setIsLogged}) => {
                 </div>
                 <div className="profile__input-area">
                     <p className='profile__subtext'>Email</p>
-                    <input className="profile__input" id="name" name="name" type="text" required autoComplete="off" disabled={isDisabled} value={email || ''} 
+                    <input className="profile__input" id="email" name="email" type="text" required autoComplete="off" disabled={isDisabled} value={email || ''} 
                     onChange={handleNameChange}
                     />
                 </div>

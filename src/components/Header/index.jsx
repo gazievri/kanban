@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 import "./header.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Dots from "../../images/dots.svg";
 import { EditMenu } from "./../EditMenu";
@@ -8,9 +8,11 @@ import { showModal } from "../../store/slices/modalSlice";
 import useMediaQuery from "../../utils/hooks/useMediaQuery";
 import MobileMenu from "./mobileMenu/MobileMenu";
 import Button from "../Button";
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 const Header = ({ setShowEdit, showEdit, clickOnEditBordMenu }) => {
   const dispatch = useDispatch();
+  const currentUser = useContext(CurrentUserContext);
   const activeBoardId = useSelector(
     (state) => state.activeBoardId.activeBoardId
   );
@@ -34,11 +36,6 @@ const Header = ({ setShowEdit, showEdit, clickOnEditBordMenu }) => {
       label: "Edit Board",
       color: "#828FA3",
       action: () => dispatch(showModal("EditBoard")),
-    },
-    {
-      label: "User Profile",
-      color: "#828FA3",
-      action: () => dispatch(showModal("UpdateProfile")),
     },
     {
       label: "Delete Board",
@@ -84,7 +81,7 @@ const Header = ({ setShowEdit, showEdit, clickOnEditBordMenu }) => {
           <Button
             fn={handleClickAddTaskBtn}
             type="submit"
-            label={isHidden ? '' : `${isMobile ? `+` : "+ Add New Task"}`}  
+            label={isHidden ? "" : `${isMobile ? `+` : "+ Add New Task"}`}
             isLarge={isMobile ? false : true}
             isFullWidth={false}
             hidden={isHidden}
@@ -103,7 +100,12 @@ const Header = ({ setShowEdit, showEdit, clickOnEditBordMenu }) => {
               setShowEdit={setShowEdit}
             />
           </div>
-          <img className='header__avatar' src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/625.jpg" />
+          <button className="header__avatar" onClick={() => dispatch(showModal("UpdateProfile"))}>
+            <img
+              className="header__avatar-img"
+              src={currentUser.avatar}
+            />
+          </button>
         </div>
       </div>
     </header>
