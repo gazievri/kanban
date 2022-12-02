@@ -1,10 +1,10 @@
-import "../authorization.scss";
+import "./authorization.scss";
 import { useState, useEffect } from "react";
-import { ThemeSwitcher } from "../../../components/ThemeSwitcher";
-import Button from "../../../components/Button";
+import { ThemeSwitcher } from "../../components/ThemeSwitcher";
+import Button from "../../components/Button";
 import { NavLink } from "react-router-dom";
 import React from "react";
-import { mainApi } from "../../../utils/api/mainApi";
+import { mainApi } from "../../utils/api/mainApi";
 import { useNavigate } from "react-router-dom";
 
 export const Register = ({ setCurrentUser, setIsLogged }) => {
@@ -26,14 +26,12 @@ export const Register = ({ setCurrentUser, setIsLogged }) => {
   const navigate = useNavigate();
 
   function handlePasswordRegistration(e) {
-    let passwordInputValue =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
-        e.target.value
-      );
-    // setPasswordValid(passwordInputValue);
+    let passwordInputValue = /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(
+      e.target.value
+    );
     if (!passwordInputValue) {
       setPasswordError(
-        "A password must contains at least eight characters, including at least one number and includes both lower and uppercase letters"
+        "Minimum eight characters, at least one letter and one number:"
       );
     } else {
       setPasswordValid(true);

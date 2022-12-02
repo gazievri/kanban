@@ -10,8 +10,8 @@ import { addAllBoards } from "./store/slices/boardsSlice";
 import { addAllTasks } from "./store/slices/tasksSlice";
 import { setActiveBoardId } from "./store/slices/activeBoardId";
 import { NotFound } from "./pages/NotFound/NotFound";
-import { Register } from "./pages/Authorization/Register/Register";
-import { Login } from "./pages/Authorization/Login/Login";
+import { Register } from "./pages/Authorization/Register";
+import { Login } from "./pages/Authorization/Login";
 import React from "react";
 import ProtectedRoute from "./utils/hooks/ProtectedRoute";
 import CurrentUserContext from "./contexts/CurrentUserContext";
@@ -81,15 +81,10 @@ function App() {
     setActiveBoard(boardId);
   };
 
-  // При загрузке страницы запрашиваем все доски и таски
-  // useEffect(() => {
-  //   getBoards();
-  //   getTasks();
-  // }, []);
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
-        <Modal setIsLogged={setIsLogged}/>
+        <Modal setIsLogged={setIsLogged} setCurrentUser={setCurrentUser}/>
         <Routes>
           <Route element={<ProtectedRoute isLogged={isLogged} />}>
             <Route

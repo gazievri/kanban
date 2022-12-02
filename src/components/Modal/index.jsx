@@ -11,7 +11,7 @@ import { EditMenu } from '../EditMenu';
 import UpdateTask from '../../modals/TaskModal/UpdateTask';
 import { Profile } from '../../modals/Profile/Profile';
 
-export function Modal({setIsLogged}) {
+export function Modal({setIsLogged, setCurrentUser}) {
   const dispatch = useDispatch();
   const { isVisible, type } = useSelector(state => state?.modal);
 
@@ -28,7 +28,7 @@ export function Modal({setIsLogged}) {
         {type === 'AddColumn' && <AddColumn />}
         {type === 'EditBoard' && <EditBoard />}
         {type === 'EditMenu' && <EditMenu />}
-        {type === 'UpdateProfile' && <Profile setIsLogged={setIsLogged}/>}
+        {type === 'UpdateProfile' && <Profile setIsLogged={setIsLogged} setCurrentUser={setCurrentUser}/>}
       </div>
     </div>
   );

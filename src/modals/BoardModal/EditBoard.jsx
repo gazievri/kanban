@@ -13,11 +13,9 @@ export const EditBoard = () => {
   const activeBoardId = useSelector(state => state.activeBoardId.activeBoardId);
   const boards = useSelector(state => state.boards.boards);
   const activeBoard = boards.find(board => board.id === activeBoardId);
+  const [currentColumns, setCurrentColumns] = useState(activeBoard.columns)
   const dispatch = useDispatch();
-  let currentColumns = activeBoard.columns
-
-
-
+  
   const handleSaveClick = e => {
     e.preventDefault();
 
@@ -44,16 +42,7 @@ export const EditBoard = () => {
   const handleDeleteColumn = columnId => {
     let result = currentColumns.find(element => element.columnId === columnId).columnId
     let newArr = currentColumns.filter((element) => element.columnId !== result);
-    const boardData = {
-      ...activeBoard, name: boardName[0].name
-      , columns: newArr
-    };
-    mainApi
-      .updateBoard(boardData)
-      .then(res => {
-        dispatch(updateBoard(res));
-      })
-      .catch(err => console.log(err));
+    setCurrentColumns(newArr)
   }
 
   return (
