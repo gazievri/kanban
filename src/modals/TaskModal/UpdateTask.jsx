@@ -75,22 +75,23 @@ const UpdateTask = () => {
         setData(oldData => ({ ...oldData, columnId: column.columnId, status: column.status }))
     }, [column])
 
-    const handleDeleteSubtask = subtaskId => {
+    const handleDeleteSubtask = (subtaskId, e) => {
+        e.preventDefault()
         console.log(subtaskId)
         let currentSubtasks = subtasks.find(element => element.id === subtaskId).id
         console.log(currentSubtasks)
         let newSubtasks = subtasks.filter((element) => element.id !== currentSubtasks);
        
-        const taskData = {
-            ...activeTask,  subtasks: newSubtasks
-        };
-        mainApi
-            .updateTask(taskData)
-            .then(res => {
-                console.log(res)
+        // const taskData = {
+        //     ...activeTask,  subtasks: newSubtasks
+        // };
+        // mainApi
+        //     .updateTask(taskData)
+        //     .then(res => {
+        //         console.log(res)
 
-            })
-            .catch(err => console.log(err));
+        //     })
+        //     .catch(err => console.log(err));
     }
 
     return (

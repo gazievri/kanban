@@ -4,7 +4,7 @@ import '../../styles/@variables.scss';
 import '../../modals/TaskModal/Task.scss';
 import './Subtask.scss';
 
-const Subtask = ({ placeholder, id, setSubtasks, subtasks, handleDeleteSubtask }) => {  
+const Subtask = ({ placeholder, id, setSubtasks, subtasks, handleDeleteSubtask=Function.prototype }) => {  
   const handleInput = e => {
     const newSubTs = {
       name: e.target.value,
@@ -31,7 +31,7 @@ const Subtask = ({ placeholder, id, setSubtasks, subtasks, handleDeleteSubtask }
         defaultValue={subtasks[id - 1]?.name}
       />
       <button className='task-form__subtask-btn' 
-      onClick={() => handleDeleteSubtask(subtasks[id - 1]?.id)}
+      onClick={(e) => handleDeleteSubtask(subtasks[id - 1]?.id, e)}
       >
 
         <div className='task-form__subtask-btn-picture' />
