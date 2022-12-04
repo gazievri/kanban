@@ -1,10 +1,8 @@
-# The React Kanban
-
-![](public/home.png)
+# HedgTasker
 
 ## Description
 
-**The React Kanban** is an educational project of a small team of web developers from Russia. Its main goal is to add a
+**HedgTasker** is an educational project of a small team of web developers from Russia. Its main goal is to add a
 pet-project to the portfolio and develop hard-skills.
 
 ![](public/screen.png)
@@ -19,7 +17,7 @@ pet-project to the portfolio and develop hard-skills.
 
 ```
 npm install
-npm run dev
+npm start
 ```
 
 ## Team
