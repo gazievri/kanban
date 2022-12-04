@@ -1,13 +1,12 @@
-@import "../../styles/@mixins";
-@import "../../styles/@variables";
+@import '../../styles/@mixins';
+@import '../../styles/@variables';
 
 .button {
   background-color: $main-purple;
   width: 174px;
   border: none;
   color: $white;
-  transition: background-color .3s ease-in-out;
-
+  transition: background-color 0.3s ease-in-out;
 }
 
 .button:hover {
@@ -52,7 +51,11 @@
 }
 
 .disabled {
-  background-color: $dark-grey;
+  background-color: grey;
+}
+
+.disabled:hover {
+  background-color: grey;
 }
 
 .hidden {

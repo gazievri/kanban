@@ -10,7 +10,7 @@ const Button = ({
   isSecondary = false,
   isFullWidth = false,
   isDestructive = false,
-  hidden = false
+  hidden = false,
 }) => (
   <button
     className={[
@@ -20,7 +20,7 @@ const Button = ({
       isDestructive ? 'destructive' : '',
       isFullWidth ? 'buttonFull' : '',
       disabled ? 'disabled' : '',
-      hidden ? 'hidden' : ''
+      hidden ? 'hidden' : '',
     ].join(' ')}
     onClick={fn}
     onSubmit={fnSubmit}
