@@ -6,45 +6,29 @@ import { NavLink } from "react-router-dom";
 import {useState} from 'react';
 import { mainApi } from "../../utils/api/mainApi";
 import { useNavigate} from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { emailValidation, passwordValidation } from '../../utils/regExp';
 
 export const Login = ({setIsLogged, setCurrentUser}) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [emailValid, setEmailValid] = useState(false);
   const [errorLogin, setErrorLogin] = useState(false);
-  const [passwordValid, setPasswordValid] = useState(false)
+
+  // Использование react-use-form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "all",
+  });
 
   const navigate = useNavigate()
-  function handlePasswordLogin(e) {
-    if(password.length > 8) {
-      setPasswordValid(true)
-    } else {
-      setPasswordValid(false)
-    }
-    setPassword(e.target.value);
-  }
 
-  function handleEmailLogin(e) {
-    let emailInputValue = /\S+@\S+\.\S+/.test(
-        e.target.value)
-    setEmailValid(emailInputValue)
-    if (!emailInputValue) {
-        setEmailError("Incorrectly entered Email");
-    } else {
-        setEmailError("")
-    }
-    setEmail(e.target.value);
-}
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const onSubmit = (data) => {
     mainApi
       .getUsers()
       .then((res) => {
-        let user = res.find((el) => el.email == email);
-        if (user.password == password) {
+        let user = res.find((el) => el.email == data.email);
+        if (user.password == data.password) {
             setIsLogged(true);
           } else setErrorLogin(true)
           console.log(user)
@@ -76,30 +60,50 @@ export const Login = ({setIsLogged, setCurrentUser}) => {
         </NavLink>
         <h1 className="authorization__title">Login</h1>
       </div>
-      <form className="authorization__form" onSubmit={handleSubmit}>
-        <div className="authorization__input-area">
+      <form className="authorization__form" onSubmit={handleSubmit(onSubmit)}>
+        <label className="authorization__input-area">
           <p className="authorization__subtext">E-mail</p>
           <input
             className="authorization__input"
             id="email"
             name="email"
             type="email"
-            onChange={handleEmailLogin}
             required
+            {...register("email", {
+              required: "Please, enter e-mail",
+              maxLength: {
+                value: 50,
+                message: "No more than 50 characters",
+              },
+              pattern: {
+                value: emailValidation,
+                message: "Incorrectly entered Email",
+              },
+            })}
           />
-
-        </div>
-        <span className="authorization__input-error">{emailError}</span>
-        <div className="authorization__input-area">
+        </label>
+        <span className="authorization__input-error">{errors.email?.message}</span>
+        <label className="authorization__input-area">
           <p className="authorization__subtext">Password</p>
           <input
             className="authorization__input"
             name="password"
             type="password"
-            onChange={handlePasswordLogin}
             required
+            {...register("password", {
+              required: "Please, enter password",
+              maxLength: {
+                value: 50,
+                message: "No more than 50 characters",
+              },
+              pattern: {
+                value: passwordValidation,
+                message: "Incorrectly entered Password",
+              },
+            })}
           />
-        </div>
+        </label>
+        <span className="authorization__input-error">{errors.password?.message}</span>
         {/* <div className="authorization__remember">
                 <Checkbox label="Remember me" />
             </div> */}
@@ -110,7 +114,7 @@ export const Login = ({setIsLogged, setCurrentUser}) => {
       </form>
 
       <div className="authorization__buttons">
-        <Button label={"Login"} isLarge fn={handleSubmit}  disabled={ emailValid === false || passwordValid === false  } />
+        <Button label={"Login"} isLarge fn={handleSubmit(onSubmit)} disabled={!isValid} type="submit"/>
         <NavLink to="/register">
           <Button label={"Dont have accout?  Go to register"} isLarge />
         </NavLink>
