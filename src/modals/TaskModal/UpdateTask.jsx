@@ -50,8 +50,7 @@ const UpdateTask = () => {
     // При изменении в интупатх таски (имя и описание) обновляет объект с таски
     const handleChange = e => {
         const { name, value } = e.target;
-        setData(oldData => ({ ...oldData, [name]: value }));
-        setIsDisabled(false)
+        setData(oldData => ({ ...oldData, [name]: value }));    
     };
 
     // При нажатии на сохранить изменения отправляет новую таску на сервер и при 
@@ -64,6 +63,11 @@ const UpdateTask = () => {
             .catch(err => console.log(err))
             .finally(dispatch(closeModal()));
     }
+
+    // Отключение кнопки submit если Title пустой
+    useEffect(() => {
+        data.title.length === 0 ? setIsDisabled(true) : setIsDisabled(false)
+    }, [data.title])
 
     // При любом изменении в subtasks обновляет содержимое ключа subtasks в объекте data (данные таски)
     useEffect(() => {
@@ -105,7 +109,8 @@ const UpdateTask = () => {
                     type='text'
                     name='title'
                     onChange={handleChange}
-                    value={data.title || activeTask.title}
+                    defaultValue={activeTask.title}
+                    value={data.title}
                 />
             </label>
             <label className='task-form__label-container'>
@@ -116,7 +121,8 @@ const UpdateTask = () => {
                     type='text'
                     name='description'
                     onChange={handleChange}
-                    value={data.description || activeTask.description}
+                    defaultValue={activeTask.description}
+                    value={data.description}
                 />
             </label>
             <div className='task-form__subtasks-wrapper'>
