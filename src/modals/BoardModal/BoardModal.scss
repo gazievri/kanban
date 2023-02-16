@@ -34,9 +34,9 @@
   
     flex-direction: column;
     row-gap: 12px;
-    label {
-      margin-right: 16px;
-    }
+    // label {
+    //   margin-right: 16px;
+    // }
   }
 }
 
@@ -78,7 +78,7 @@
 .modal-board__column {
   display: flex;
   align-items: center;
-  width: 97%;
+  width: 100%;
   justify-content: space-between;
 }
 

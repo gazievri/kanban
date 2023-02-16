@@ -20,17 +20,25 @@ export const AddBoard = () => {
   const { type } = useSelector(state => state?.modal);
   const boards = useSelector(state => state.boards.boards);
   const currentUser = useContext(CurrentUserContext);
+  const columns = [];
 
   const handelColumnAddClick = e => {
     e.preventDefault();
     setColumnsFields(columnsFields + 1);
   };
 
+  const handelColumnRemoveClick = e =>{
+    e.preventDefault();
+    setColumnsFields(state => state -1)
+    console.log(columnsFields)
+    console.log(columns)
+  }
+
   //  Отрисовывает неообходимое количество элементов с полями для названий колонок
   const columnFieldsElements = () => {
-    const content = [];
+    
     for (let i = 1; i <= columnsFields; i++) {
-      content.push(
+      columns.push(
         <div className='modal-board__column' id={i} key={i}>
           <TextField
             placeholder='Columns'
@@ -39,14 +47,14 @@ export const AddBoard = () => {
             name={`columnName ${i}`}
             setResult={setResult}
           />
-          <div
+          {/* <div
             className='modal-board__column-field-delete'
-            onClick={() => alert('Функция удаления поля названия колонки')}
-          />
+            onClick={() => content.filter(el => el.key == i)}
+          /> */}
         </div>
       );
     }
-    return content;
+    return columns;
   };
 
   // Создаем объект доски для отправки на бэк
@@ -116,10 +124,13 @@ export const AddBoard = () => {
           />
         </label>
         <label className='modal-board__create-column'>
-          <p className='modal-board__input-title'>Columns</p>
+          <p className='modal-board__input-title'>{columnsFields !== 0 ? 'Columns' : 'Columns not set'}</p>
           <div className='modal-board__column-name'>{columnFieldsElements()}</div>
         </label>
         <Button label='+ Add New Column' isFullWidth isSecondary fn={handelColumnAddClick} isLarge />
+        {columnsFields !== 0 ? <Button label='Remove Column' isFullWidth isSecondary fn={handelColumnRemoveClick} isLarge /> :
+        '' }
+        
         {isDisabled ? (
           <Button label='Add board name' isFullWidth disabled isLarge />
         ) : (
