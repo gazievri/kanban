@@ -88,7 +88,7 @@ function App() {
         <Routes>
           <Route element={<ProtectedRoute isLogged={isLogged} />}>
             <Route
-              path="/"
+              path="/board"
               element={
                 <Main
                   boards={boards}
@@ -99,7 +99,7 @@ function App() {
               }
             />
           </Route>
-          <Route path="welcome" element={<WelcomePage />} />
+          <Route path="/" element={<WelcomePage />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="register" element={<Register  setIsLogged={setIsLogged}
                 setCurrentUser={setCurrentUser}/>} />

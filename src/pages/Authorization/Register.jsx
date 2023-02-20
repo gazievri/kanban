@@ -84,7 +84,7 @@ export const Register = ({ setCurrentUser, setIsLogged }) => {
     mainApi.createUser(user).then((res) => {
       setIsLogged(true);
       setCurrentUser(res);
-      navigate("/");
+      navigate("/board");
     });
   };
 
@@ -92,7 +92,7 @@ export const Register = ({ setCurrentUser, setIsLogged }) => {
     <div className="authorization">
       <ThemeSwitcher />
       <div className="authorization__about">
-        <NavLink to="/welcome">
+        <NavLink to="/">
           <svg
             id="Layer_1"
             className="header__hedghog authorization__hedhog"

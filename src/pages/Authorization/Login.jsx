@@ -33,7 +33,7 @@ export const Login = ({setIsLogged, setCurrentUser}) => {
           } else setErrorLogin(true)
           console.log(user)
           setCurrentUser(user)
-          navigate('/')
+          navigate('/board')
       })
       .catch((err) => console.log(err));
   };
@@ -42,7 +42,7 @@ export const Login = ({setIsLogged, setCurrentUser}) => {
     <div className="authorization">
       <ThemeSwitcher />
       <div className="authorization__about">
-        <NavLink to="/welcome">
+        <NavLink to="/">
           <svg
             id="Layer_1"
             className="header__hedghog authorization__hedhog"
